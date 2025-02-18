@@ -50,9 +50,7 @@ registeruser(){
         this.loading=false
 
         
-         setInterval(()=>{
-          this._Router.navigate(['/auth/login'])
-         }, 2000)
+        this._Router.navigate(['/login'])
 
         
 
