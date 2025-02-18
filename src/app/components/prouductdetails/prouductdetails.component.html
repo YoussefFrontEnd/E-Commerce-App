@@ -1,0 +1,43 @@
+@if (productdetails) {
+  <section class="my-10 p-3">
+    <div class="container mx-auto">
+      <div class="flex flex-wrap -mx-2 items-center">
+        <div class="w-full md:w-3/12 px-2">
+          
+          <owl-carousel-o [options]="customOptions">
+            
+              @for (image of productdetails.images ; track $index) {
+                <ng-template carouselSlide >
+                  <img [src]="image" class="img1">
+                </ng-template>
+              }
+          </owl-carousel-o>
+        </div>
+  
+        <div class="w-full md:w-9/12 px-2">
+          <div class="details">
+            <p class="fw-bold my-3">{{productdetails.description}}</p>
+            <h2 class="text-2xl my-3">{{productdetails.title}}</h2>
+            <h2 class="text-2xl my-3 text-main" >{{productdetails.category.name}}</h2>
+            <div class="flex justify-between items-center mt-2 my-3">
+              <span class="text-gray-700 font-medium my-3">{{productdetails.price}} EGP</span>
+              <div class="text-xs">
+                @for (star of [1,2,3,4,5].slice(0 , productdetails.ratingsAverage); track $index) {
+                  <span class="rating-color"><i class="fa-solid fa-star"></i></span>
+                }
+                @if (productdetails.ratingsAverage % 1 != 0) {
+                  <i class="rating-color fa-regular fa-star-half-stroke"></i>
+                }
+                <span>{{productdetails.ratingsAverage}}</span>
+              </div>
+            </div>
+  
+            <button (click)="getCart(productdetails._id)" class="btn-main w-full mx-auto">Add to Cart</button>
+        
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+}
+

@@ -1,0 +1,123 @@
+<section class=" bg-main-light p-2 rounded-2  mx-auto shadow my-3">
+  <h1 class="text-main  mt-3 fs-1">register now:</h1>
+  
+
+  @if (resmessage) {<p class="bg-red-100 border-l-4 border-red-500 text-red-700 p-3 rounded-lg w-56 mx-auto">{{resmessage}}</p>}
+
+  <form [formGroup]="registerform" (ngSubmit)="registeruser()">
+    <div class="my-2">
+      <label class="mb-1 block" for="name">name:</label>
+      <input type="text"
+
+      [ngClass]="{
+        'border-green-500': !registerform.get('name')?.errors && (registerform.get('name')?.touched || registerform.get('name')?.dirty),
+        'border-red-500': registerform.get('name')?.errors && (registerform.get('name')?.touched || registerform.get('name')?.dirty)
+      }"
+      
+      
+        formControlName="name" id="name" class="form-control border border-gray-300 rounded px-2 py-2 text-sm w-full">
+
+
+      @if (registerform.get("name")?.errors && registerform.get("name")?.touched) 
+      {
+        @if (registerform.get("name")?.getError("required")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">Name is required</p>}
+        @else if (registerform.get("name")?.getError("minlength")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">Name length must be at least 3</p>}
+        @else if (registerform.get("name")?.getError("maxlength")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">Name length must be maximum 10</p>}
+      }
+      
+
+
+
+    </div>
+
+    <div class="my-2">
+      <label class="mb-1 block" for="email">email:</label>
+      <input type="email"
+
+      [ngClass]="{
+        'border-green-500': !registerform.get('email')?.errors && (registerform.get('email')?.touched || registerform.get('email')?.dirty),
+        'border-red-500': registerform.get('email')?.errors && (registerform.get('email')?.touched || registerform.get('email')?.dirty)
+      }"
+
+       formControlName="email" id="email" class="form-control border border-gray-300 rounded px-2 py-2 text-sm w-full">
+
+
+      @if (registerform.get("email")?.errors && registerform.get("email")?.touched) 
+      {
+        @if (registerform.get("email")?.getError("required")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">email is required</p>}
+        @else if (registerform.get("email")?.getError("email")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">email format is not correct</p>}
+        
+      }
+
+    </div>
+
+    <div class="my-2">
+      <label class="mb-1 block" for="password">password:</label>
+      <input type="password"
+
+      [ngClass]="{
+        'border-green-500': !registerform.get('password')?.errors && (registerform.get('password')?.touched || registerform.get('password')?.dirty),
+        'border-red-500': registerform.get('password')?.errors && (registerform.get('password')?.touched || registerform.get('password')?.dirty)
+      }"
+
+       formControlName="password" id="password" class="form-control border border-gray-300 rounded px-2 py-2 text-sm w-full">
+
+      @if (registerform.get("password")?.errors && registerform.get("password")?.touched)
+       {
+        @if (registerform.get("password")?.getError("required")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">password is required</p>}
+        @else if (registerform.get("password")?.getError("pattern")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">password must be at leat 6</p>}
+      }
+
+
+    </div>
+
+    <div class="my-2">
+      <label class="mb-1 block" for="rePassword">confirm password:</label>
+      <input type="password"
+
+      [ngClass]="{
+        'border-green-500': !registerform.get('rePassword')?.errors && (registerform.get('rePassword')?.touched || registerform.get('rePassword')?.dirty),
+        'border-red-500': registerform.get('rePassword')?.errors && (registerform.get('rePassword')?.touched || registerform.get('rePassword')?.dirty)
+      }"
+      
+
+       formControlName="rePassword" id="rePassword" class="form-control border border-gray-300 rounded px-2 py-2 text-sm w-full">
+
+      @if (registerform.getError("missmatch") && registerform.get("rePassword")?.touched) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">confirm password is not correct</p>}
+
+
+
+
+
+
+
+    </div>
+
+    <div class="my-2">
+      <label class="mb-1 block" for="phone">phone:</label>
+      <input type="tel"
+
+      [ngClass]="{
+        'border-green-500': !registerform.get('phone')?.errors && (registerform.get('phone')?.touched || registerform.get('phone')?.dirty),
+        'border-red-500': registerform.get('phone')?.errors && (registerform.get('phone')?.touched || registerform.get('phone')?.dirty)
+      }"
+      
+      
+      
+      formControlName="phone"  id="phone" class="form-control border border-gray-300 rounded px-2 py-1 text-sm w-full">
+
+      @if (registerform.get("phone")?.errors && registerform.get("phone")?.touched) 
+      {
+        @if (registerform.get("phone")?.getError("required")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">phone is required</p>}
+        @else if (registerform.get("phone")?.getError("pattern")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">phone must be in egypt</p>}
+        
+      }
+
+
+    </div>
+
+    <button [disabled]="registerform.invalid" type="submit" class="btn-main w-28 ml-auto block">register
+      @if (loading) {<span><i class="fa-solid fa-spinner fa-spin"></i></span>}
+    </button>
+  </form>
+</section>

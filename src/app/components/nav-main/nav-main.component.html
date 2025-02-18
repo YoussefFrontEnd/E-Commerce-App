@@ -1,0 +1,78 @@
+<nav class="bg-gray-200">
+  <div class="max-w-7xl m-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      
+      <div class="flex items-center space-x-4"> 
+        <div class="text-2xl font-bold">
+          <img src="assets/images/freshcart-logo.svg" alt="">
+        </div>
+        
+        <div class="hidden md:flex space-x-3">
+          <a routerLink="home" routerLinkActive="active-link" class="text-gray-700 p-2">Home</a>
+          <a routerLink="product" routerLinkActive="active-link" class="text-gray-700 p-2">Product</a>
+          <a routerLink="categories" routerLinkActive="active-link" class="text-gray-700 p-2">Categories</a>
+          <a routerLink="brand" routerLinkActive="active-link" class="text-gray-700 p-2">Brand</a>
+        </div>
+      </div>
+
+      
+      <div class="hidden md:flex items-center space-x-4">
+
+
+        <a class="relative cursor-pointer">
+          <i routerLink="cart" class="text-main text-2xl cursor-pointer fas fa-shopping-cart"></i>
+          <span class="absolute -top-2 -right-2 bg-blue-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+            {{cartcount}}
+          </span>
+        </a>
+        
+        
+        
+          
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <i class=" fa-brands fa-instagram cursor-pointer"></i>
+        <i class=" fa-brands fa-facebook cursor-pointer"></i>
+        <i class=" fa-brands fa-tiktok cursor-pointer"></i>
+        <i class=" fa-brands fa-twitter cursor-pointer"></i>
+        <i class=" fa-brands fa-linkedin cursor-pointer"></i>
+        <i class=" fa-brands fa-youtube cursor-pointer"></i>
+        <a routerLinkActive="active-link" (click)="logout()" class="text-gray-700 p-2">log out</a> 
+      </div>
+
+      <button 
+        (click)="toggleMenu()" 
+        class="md:hidden text-gray-700 focus:outline-none absolute right-4"
+        aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <div *ngIf="isMenuOpen" class="md:hidden flex flex-col space-y-2 pt-2">
+      <a routerLink="home"routerLinkActive="active-link" class="text-gray-700">Home</a>
+      <a routerLink="product"routerLinkActive="active-link" class="text-gray-700">Product</a>
+      <a routerLink="categories"routerLinkActive="active-link" class="text-gray-700">Categories</a>
+      <a routerLink="brand"routerLinkActive="active-link" class="text-gray-700">Brand</a>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+

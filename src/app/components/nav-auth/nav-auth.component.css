@@ -1,0 +1,9 @@
+/* عندما يكون القائمة في وضع مخفي على الموبايل */
+@media (max-width: 768px) {
+  .hidden-on-mobile {
+    display: none;
+  }
+  .visible-on-mobile {
+    display: block;
+  }
+}

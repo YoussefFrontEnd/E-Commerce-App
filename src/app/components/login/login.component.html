@@ -1,0 +1,59 @@
+<section class=" bg-main-light p-2 rounded-2  mx-auto shadow my-3">
+  <h1 class="text-main  mt-3 fs-1">register now:</h1>
+  
+
+  @if (resmessage) {<p class="bg-red-100 border-l-4 border-red-500 text-red-700 p-3 rounded-lg w-56 mx-auto">{{resmessage}}</p>}
+
+  <form [formGroup]="loginUser" (ngSubmit)="login()">
+   
+
+    <div class="my-2">
+      <label class="mb-1 block" for="email">email:</label>
+      <input type="email"
+
+      [ngClass]="{
+        'border-green-500': !loginUser.get('email')?.errors && (loginUser.get('email')?.touched || loginUser.get('email')?.dirty),
+        'border-red-500': loginUser.get('email')?.errors && (loginUser.get('email')?.touched || loginUser.get('email')?.dirty)
+      }"
+
+       formControlName="email" id="email" class="form-control border border-gray-300 rounded px-2 py-2 text-sm w-full">
+
+
+      @if (loginUser.get("email")?.errors && loginUser.get("email")?.touched) 
+      {
+        @if (loginUser.get("email")?.getError("required")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">email is required</p>}
+        @else if (loginUser.get("email")?.getError("email")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">email format is not correct</p>}
+        
+      }
+
+    </div>
+
+    <div class="my-2">
+      <label class="mb-1 block" for="password">password:</label>
+      <input type="password"
+
+      [ngClass]="{
+        'border-green-500': !loginUser.get('password')?.errors && (loginUser.get('password')?.touched || loginUser.get('password')?.dirty),
+        'border-red-500': loginUser.get('password')?.errors && (loginUser.get('password')?.touched || loginUser.get('password')?.dirty)
+      }"
+
+       formControlName="password" id="password" class="form-control border border-gray-300 rounded px-2 py-2 text-sm w-full">
+
+      @if (loginUser.get("password")?.errors && loginUser.get("password")?.touched)
+       {
+        @if (loginUser.get("password")?.getError("required")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">password is required</p>}
+        @else if (loginUser.get("password")?.getError("pattern")) {<p class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded my-2">password must be at leat 6</p>}
+      }
+
+
+    </div>
+
+   
+
+   
+
+    <button [disabled]="loginUser.invalid" type="submit" class="btn-main w-28 ml-auto block">login
+      @if (loading) {<span><i class="fa-solid fa-spinner fa-spin"></i></span>}
+    </button>
+  </form>
+</section>

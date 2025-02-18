@@ -1,0 +1,30 @@
+<section class="bg-gray-100 p-4 rounded-md mx-auto shadow my-3 max-w-5xl w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
+  <h1 class="text-main text-2xl sm:text-3xl font-bold my-2 text-center">Shipping Address</h1>
+  <div class="container">
+    <form [formGroup]="shipingaddress" (ngSubmit)="payorder()" class="space-y-4">
+
+      <div>
+        <label for="details" class="block text-gray-700 font-medium mb-1">Details</label>
+        <textarea formArrayName="details" id="details"
+          class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300"></textarea>
+      </div>
+
+      <div>
+        <label for="phone" class="block text-gray-700 font-medium mb-1">Phone</label>
+        <input type="tel" formArrayName="phone" id="phone"
+          class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300">
+      </div>
+
+      <div>
+        <label for="city" class="block text-gray-700 font-medium mb-1">City</label>
+        <input type="text" formArrayName="city" id="city"
+          class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-300">
+      </div>
+
+      <button class="btn-main w-full sm:w-80 block mx-auto my-3 text-center py-2">Payment</button>
+
+    </form>
+  </div>
+</section>
+
+

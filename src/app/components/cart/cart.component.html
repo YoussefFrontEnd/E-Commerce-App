@@ -1,0 +1,64 @@
+@if (cartData) {
+  <section class="bg-main-light p-4 rounded-md mx-auto shadow my-3 max-w-5xl w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
+    <h1 class="font-bold text-xl sm:text-2xl">Shop Cart:</h1>
+    <h3 class="text-main font-bold text-sm sm:text-base">
+      Total cart price: {{cartData.totalCartPrice | currency:'GBP'}} 
+    </h3>
+  
+    <div class="container max-w-5xl mx-auto px-4 bg-gray-100 p-4 rounded-md shadow">
+
+    @for (item of cartData.products; track item.product._id) {
+      <div class="grid grid-cols-12 gap-4 items-center border-b-4 border-gray-300 pb-4 last:border-b-0 flex-wrap md:flex-nowrap">
+        
+        <div class="col-span-12 sm:col-span-3 p-2">
+          <div class="item-img">
+            <img [src]="item.product.imageCover" [alt]="item.product.title" class="w-full rounded-md">
+          </div>
+        </div>
+        
+        <div class="col-span-12 sm:col-span-6 p-2">
+          <div class="item-details text-center sm:text-left">
+            <h2 class="text-lg font-bold">{{item.product.title}}</h2>
+            <p class="font-bold text-main text-base sm:text-xl">{{item.price | currency:'GBP'}}</p>
+            <span class="text-main cursor-pointer">
+              <i (click)="removeitem(item.product._id)" class="text-main fa-solid fa-trash cursor-pointer"></i> Remove
+            </span>
+          </div>
+        </div>
+  
+        <div class="col-span-12 sm:col-span-3 p-2">
+          <div class="item flex justify-center items-center gap-4 sm:gap-6 text-main text-lg sm:text-2xl">
+            <span (click)="updatequant(item.product._id ,item.count + 1)" class="border-2 rounded-sm p-2 cursor-pointer hover:bg-gray-200 transition">
+              <i class="fa-solid fa-plus cursor-pointer"></i>
+            </span>
+            <p class="text-lg sm:text-xl font-bold">{{item.count}}</p>
+
+            @if (item.count > 1) {
+              <span (click)="updatequant(item.product._id ,item.count - 1)" class="border-2 rounded-sm p-2 cursor-pointer hover:bg-gray-200 transition">
+                <i class="fa-solid fa-minus cursor-pointer"></i>
+              </span>
+            }
+          </div>
+        </div>
+
+      </div>
+    }
+    </div>
+
+    @if (cartData.products.length) {
+      <div class="flex justify-center my-5">
+        <button [routerLink]="['/checkout' ,cartData._id]" class="w-full sm:w-80 btn-main">Check Out</button>
+      </div>
+    }
+  </section>
+}
+
+  
+  
+  
+  
+  
+  
+  
+  
+
